@@ -5,7 +5,7 @@ import Web3Modal from "web3modal";
 import { useRouter } from "next/router";
 import {votingAddress,votingABI} from "../context/constants";
 const fetchContract = (signerOrProvider) => new ethers.Contract(votingAddress, votingABI, signerOrProvider);
-const uei="https://polygon-amoy.g.alchemy.com/v2/BTeFNsqvZQ3n6WacRdUT1P4U-KSXkaOA";
+const uei="https://polygon-amoy.g.alchemy.com/v2/jyDIa4u5Su99z0yPRYvc6uVm0sljrAwU";
 export const VotingContext =React.createContext();
 export const VotingProvider = ({children})=>{
     const votingTitle ="My dapp  ";
