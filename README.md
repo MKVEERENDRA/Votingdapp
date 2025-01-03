@@ -1,6 +1,9 @@
 # Voting DApp
 
 A decentralized voting application built with Next.js, React, and Ethereum smart contracts. Live demo available at [dappvoting.netlify.app](https://dappvoting.netlify.app/)
+![Screenshot 2025-01-03 201802](https://github.com/user-attachments/assets/812a9abf-8a7f-4bff-b65a-16c137b429ba)
+![Screenshot 2025-01-03 201750](https://github.com/user-attachments/assets/de19a434-8abb-4437-a05f-18dfdd2da1a7)
+![Screenshot 2025-01-03 201739](https://github.com/user-attachments/assets/6b012799-cfc3-422c-8cac-04551b645784)
 
 ## 🗳 Features
 
