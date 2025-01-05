@@ -390,6 +390,28 @@ const registerCandidate = async (candidateAddress, age, name, image, ipfs) => {
     }
 };
 // Get all candidate addresses
+     const checkVotingStart = async () => {
+    try {
+      const contract = await fetchContractInstance();
+      const hasVotingStarted = await contract.isVotingStarted();
+      return hasVotingStarted;
+    } catch (error) {
+      console.error("Error checking voting start:", error);
+      setError(error);
+    }
+  };
+
+  // Check if voting has ended
+  const checkVotingEnded = async () => {
+    try {
+      const contract = await fetchContractInstance();
+      const hasVotingEnded = await contract.isVotingEnded();
+      return hasVotingEnded;
+    } catch (error) {
+      console.error("Error checking voting end:", error);
+      setError(error);
+    }
+  };
 const getCandidates = async () => {
     try {
         
@@ -483,7 +505,7 @@ const determineLeadingCandidate = async () => {
 
     return(
         <VotingContext.Provider value={{votingTitle,checkIfconn,connectWallet,uploadToIPFS,
-            getCandidates,startVoting,endVoting,vote,determineLeadingCandidate,
+            getCandidates,startVoting,endVoting,vote,determineLeadingCandidate,checkVotingStart,checkVotingEnded,
             getCandidateData,registerCandidate,error,getAllVoter,resetVoting,winner,
             voterArray,voterAddress,voterlength,currentAccount,CandidateLength,candidateArray,pushCandedate,
             createVoter}}>{children}</VotingContext.Provider>
