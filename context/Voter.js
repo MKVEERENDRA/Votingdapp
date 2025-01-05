@@ -198,7 +198,7 @@ const getAllVoter = async () => {
 // send ether and pay to change state within the blockchain.
 // For this, we need the account signer...
 const signer = provider.getSigner()
-        const contract = await fetchContract();
+        const contract = await fetchContract(signer);
         // Clear the arrays to avoid duplicating data
         const freshVotersArray = [];
 
@@ -419,7 +419,7 @@ const getCandidates = async () => {
 // send ether and pay to change state within the blockchain.
 // For this, we need the account signer...
 const signer = provider.getSigner()
-        const contract = await fetchContract();
+        const contract = await fetchContract(signer);
         // Clear the arrays to avoid duplicating data
         const freshCandidatesArray = [];
         const freshCandidateIndex = [];
@@ -464,13 +464,13 @@ const signer = provider.getSigner()
 
 const getCandidateData = async (candidateAddress) => {
     try {
-    const provider = new ethers.providers.JsonRpcProvider(uei);
+      const provider = new ethers.providers.JsonRpcProvider(uei);
 
 // The provider also allows signing transactions to
 // send ether and pay to change state within the blockchain.
 // For this, we need the account signer...
 const signer = provider.getSigner()
-        const contract = await fetchContract();
+        const contract = await fetchContract(signer);
         const candidateData = await contract.getCandidateData(candidateAddress);
         console.log("Candidate data:", candidateData);
         return candidateData;
