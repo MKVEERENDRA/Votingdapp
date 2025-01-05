@@ -483,8 +483,8 @@ const determineLeadingCandidate = async () => {
 
     return(
         <VotingContext.Provider value={{votingTitle,checkIfconn,connectWallet,uploadToIPFS,
-            getCandidates,startVoting,endVoting,vote,determineLeadingCandidate,checkVotingEnded,
-            getCandidateData,registerCandidate,error,getAllVoter,resetVoting,winner,checkVotingStart,
+            getCandidates,startVoting,endVoting,vote,determineLeadingCandidate,
+            getCandidateData,registerCandidate,error,getAllVoter,resetVoting,winner,
             voterArray,voterAddress,voterlength,currentAccount,CandidateLength,candidateArray,pushCandedate,
             createVoter}}>{children}</VotingContext.Provider>
     )
