@@ -33,10 +33,11 @@ const Index = () => {
         setVotingstarted(hasVotingStart);
        
         // Only fetch the leading candidate if voting has not ended
+        if (!hasVotingEnded && hasVotingStart) {
           const candidate = await determineLeadingCandidate();
           setLeadingCandidate(candidate);
           
-        
+        }
       } catch (err) {
       }
     };
