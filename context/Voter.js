@@ -480,31 +480,10 @@ const determineLeadingCandidate = async () => {
         return null;
     }
 };
-const checkVotingEnded = async () => {
-    try {
-        const contract = await fetchContract(alchemyProvider);
-        const hasVotingEnded = await contract.isVotingEnded(); // Assuming votingEnded() is a contract method
-        return hasVotingEnded;
-    } catch (error) {
-        console.error("Error checking if voting has ended:", error);
-        setError(error);
-        return false; // Return false if there's an error
-    }
-};
-const checkVotingStart = async () => {
-    try {
-        const contract = await fetchContract(alchemyProvider);
-        const hasVotingstart = await contract.isVotingStarted(); // Assuming votingEnded() is a contract method
-        return hasVotingstart;
-    } catch (error) {
-        console.error("Error checking if voting has ended:", error);
-        setError(error);
-        return false; // Return false if there's an error
-    }
-};
+
     return(
         <VotingContext.Provider value={{votingTitle,checkIfconn,connectWallet,uploadToIPFS,
-            getCandidates,startVoting,endVoting,vote,determineLeadingCandidate,checkVotingStart,checkVotingEnded
+            getCandidates,startVoting,endVoting,vote,determineLeadingCandidate,
             getCandidateData,registerCandidate,error,getAllVoter,resetVoting,winner,
             voterArray,voterAddress,voterlength,currentAccount,CandidateLength,candidateArray,pushCandedate,
             createVoter}}>{children}</VotingContext.Provider>
