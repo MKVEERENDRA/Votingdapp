@@ -5,7 +5,7 @@ import Web3Modal from "web3modal";
 import { useRouter } from "next/router";
 import {votingAddress,votingABI} from "../context/constants";
 const fetchContract = (signerOrProvider) => new ethers.Contract(votingAddress, votingABI, signerOrProvider);
-const uei="https://blockchain.googleapis.com/v1/projects/coherent-flame-426016-d3/locations/us-central1/endpoints/ethereum-holesky/rpc?key=AIzaSyDUQhGwrAke5ui47BeViW-9RzhPC6mely0";
+const uei="https://polygon-amoy.g.alchemy.com/v2/jyDIa4u5Su99z0yPRYvc6uVm0sljrAwU";
 export const VotingContext =React.createContext();
 export const VotingProvider = ({children})=>{
     const votingTitle ="My dapp  ";
@@ -42,20 +42,33 @@ export const VotingProvider = ({children})=>{
           });
         }
       };
-
-    const connectWallet = async () => {
+      const connectWallet = async () => {
         if (!window.ethereum) return setError("Please install MetaMask");
         try {
-            const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-            setCurrentAccount(accounts[0]);
-            setIsConnected(true);
-            setError(""); // Clear error on successful connection
-            window.location.reload(); // Reload the page to reflect the change
+          const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+          setCurrentAccount(accounts[0]);
+          setIsConnected(true);
+         
+          setError(""); // Clear error on successful connection
+          window.location.reload();
+
         } catch (err) {
+         
             setError("Error connecting to MetaMask: " + err.message); // Ensure it's a string
         }
-    };
-  
+      };
+      // Check if connected to MetaMask
+      const checkIfconn  = async () => {
+        if (!window.ethereum) return setError("Please install MetaMask");
+        const account = await window.ethereum.request({ method: "eth_accounts" });
+        if (account.length) {
+          setCurrentAccount(account[0]);
+          setIsConnected(true);
+        } else {
+          setError("Please Connect to Wallet");
+          setIsConnected(false);
+        }
+      };
   const uploadToIPFS = async (file) => {
     if (file) {
       try {
@@ -82,25 +95,29 @@ export const VotingProvider = ({children})=>{
 
 const connectwithsmartContract = async () =>{
   try {
-    
-    // Use Web3Provider for Ethers 5.x
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    console.log("Connected to Ethereum network", provider);
-    await provider.send("eth_requestAccounts", []);
+    const web3Modal = new Web3Modal({
+        cacheProvider: true, // Optional
+        providerOptions: {}, // Add any providers you want to support
+    });
+    console.log("xsa", web3Modal);
 
-    // Get the signer (wallet)
-      const signer = provider.getSigner()
+    // Connect to the wallet
+    const provider = await web3Modal.connect();
+    console.log("xsa", provider);
 
-    console.log("Connected to MetaMask", signer);
-    
-    // Fetch the contract using the signer
+    // Create a Web3 provider using ethers.js
+    const ethersProvider = new ethers.providers.Web3Provider(provider);
+console.log("xsa", ethersProvider);
+    // Get the signer to sign transactions
+    const signer = ethersProvider.getSigner();
+    console.log("signer", signer);
+    // Fetch your smart contract instance
     const contract = fetchContract(signer);
-    console.log("contract", contract);
-    
+    console.log("xsa", contract);
     return contract;
   } catch (error) {
-    console.error("Error connecting to MetaMask:", error);
-    toast.error("MetaMask connection failed");
+    console.error("Error connecting to MetaMask1:", error);
+    setError(error);
   }
 };
 const createVoter = async (name, image) => {
@@ -175,9 +192,7 @@ console.log("xsa", ethersProvider);
 };
 const getAllVoter = async () => {
     try {
-              const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract =  fetchContract(provider2);
-
+        const contract = await connectwithsmartContract();
 
         // Clear the arrays to avoid duplicating data
         const freshVotersArray = [];
@@ -239,8 +254,7 @@ window.location.reload();
 };
 const checkVotingEnded = async () => {
     try {
-              const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract =  fetchContract(provider2);
+        const contract = await connectwithsmartContract();
         const hasVotingEnded = await contract.votingEnded(); // Assuming votingEnded() is a contract method
         return hasVotingEnded;
     } catch (error) {
@@ -251,8 +265,7 @@ const checkVotingEnded = async () => {
 };
 const checkVotingStart = async () => {
     try {
-              const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract =  fetchContract(provider2);
+        const contract = await connectwithsmartContract();
         const hasVotingstart = await contract.votingStarted(); // Assuming votingEnded() is a contract method
         return hasVotingstart;
     } catch (error) {
@@ -394,8 +407,8 @@ const registerCandidate = async (candidateAddress, age, name, image, ipfs) => {
 // Get all candidate addresses
 const getCandidates = async () => {
     try {
-   const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract =  fetchContract(provider2);
+        const contract = await connectwithsmartContract();
+
         // Clear the arrays to avoid duplicating data
         const freshCandidatesArray = [];
         const freshCandidateIndex = [];
@@ -440,8 +453,7 @@ const getCandidates = async () => {
 
 const getCandidateData = async (candidateAddress) => {
     try {
-              const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract =  fetchContract(provider2);
+        const contract = await connectwithsmartContract();
         const candidateData = await contract.getCandidateData(candidateAddress);
         console.log("Candidate data:", candidateData);
         return candidateData;
@@ -453,8 +465,7 @@ const getCandidateData = async (candidateAddress) => {
 // Inside VotingContext
 const determineLeadingCandidate = async () => {
     try {
-              const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract =  fetchContract(provider2);
+        const contract = await connectwithsmartContract();  // Connect to the smart contract
         const [leadingCandidateAddress, leadingVoteCount] = await contract.determineLeadingCandidate();
 
         // Fetch additional candidate data like name or other details if needed
