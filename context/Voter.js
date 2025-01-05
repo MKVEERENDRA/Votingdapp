@@ -5,7 +5,7 @@ import Web3Modal from "web3modal";
 import { useRouter } from "next/router";
 import {votingAddress,votingABI} from "../context/constants";
 const fetchContract = (signerOrProvider) => new ethers.Contract(votingAddress, votingABI, signerOrProvider);
-const uei="https://blockchain.googleapis.com/v1/projects/coherent-flame-426016-d3/locations/asia-east1/endpoints/ethereum-holesky/rpc?key=AIzaSyDUQhGwrAke5ui47BeViW-9RzhPC6mely0";
+const uei="https://eth-sepolia.g.alchemy.com/v2/jyDIa4u5Su99z0yPRYvc6uVm0sljrAwU";
 const alchemyProvider = new ethers.providers.JsonRpcProvider(uei);
 export const VotingContext =React.createContext();
 export const VotingProvider = ({children})=>{
