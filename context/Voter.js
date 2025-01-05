@@ -258,28 +258,7 @@ window.location.reload();
         setError("You are Not The Owner To start the voting process"+error.message);
     }
 };
-const checkVotingEnded = async () => {
-    try {
-        const contract = await fetchContract(alchemyProvider);
-        const hasVotingEnded = await contract.votingEnded(); // Assuming votingEnded() is a contract method
-        return hasVotingEnded;
-    } catch (error) {
-        console.error("Error checking if voting has ended:", error);
-        setError(error);
-        return false; // Return false if there's an error
-    }
-};
-const checkVotingStart = async () => {
-    try {
-        const contract = await fetchContract(alchemyProvider);
-        const hasVotingstart = await contract.votingStarted(); // Assuming votingEnded() is a contract method
-        return hasVotingstart;
-    } catch (error) {
-        console.error("Error checking if voting has ended:", error);
-        setError(error);
-        return false; // Return false if there's an error
-    }
-};
+
 const endVoting = async () => {
     try {
       // Connect to the smart contract
