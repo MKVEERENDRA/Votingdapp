@@ -260,7 +260,7 @@ window.location.reload();
 };
 const checkVotingEnded = async () => {
     try {
-        const contract = await connectwithsmartContract();
+        const contract = await fetchContract(alchemyProvider);
         const hasVotingEnded = await contract.votingEnded(); // Assuming votingEnded() is a contract method
         return hasVotingEnded;
     } catch (error) {
@@ -271,7 +271,7 @@ const checkVotingEnded = async () => {
 };
 const checkVotingStart = async () => {
     try {
-        const contract = await connectwithsmartContract();
+        const contract = await fetchContract(alchemyProvider);
         const hasVotingstart = await contract.votingStarted(); // Assuming votingEnded() is a contract method
         return hasVotingstart;
     } catch (error) {
