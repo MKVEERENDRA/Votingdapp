@@ -192,7 +192,7 @@ console.log("xsa", ethersProvider);
 };
 const getAllVoter = async () => {
     try {
-              const provider2 = new ethers.JsonRpcProvider(uei);
+              const provider2 = new ethers.providers.JsonRpcProvider(uei);
         const contract = await fetchContract(provider2);
 
 
@@ -256,7 +256,7 @@ window.location.reload();
 };
 const checkVotingEnded = async () => {
     try {
-   const provider2 = new ethers.JsonRpcProvider(uei);
+              const provider2 = new ethers.providers.JsonRpcProvider(uei);
         const contract = await fetchContract(provider2);
         const hasVotingEnded = await contract.votingEnded(); // Assuming votingEnded() is a contract method
         return hasVotingEnded;
@@ -268,7 +268,7 @@ const checkVotingEnded = async () => {
 };
 const checkVotingStart = async () => {
     try {
-   const provider2 = new ethers.JsonRpcProvider(uei);
+              const provider2 = new ethers.providers.JsonRpcProvider(uei);
         const contract = await fetchContract(provider2);
         const hasVotingstart = await contract.votingStarted(); // Assuming votingEnded() is a contract method
         return hasVotingstart;
@@ -457,7 +457,7 @@ const getCandidates = async () => {
 
 const getCandidateData = async (candidateAddress) => {
     try {
-   const provider2 = new ethers.JsonRpcProvider(uei);
+              const provider2 = new ethers.providers.JsonRpcProvider(uei);
         const contract = await fetchContract(provider2);
         const candidateData = await contract.getCandidateData(candidateAddress);
         console.log("Candidate data:", candidateData);
@@ -470,7 +470,7 @@ const getCandidateData = async (candidateAddress) => {
 // Inside VotingContext
 const determineLeadingCandidate = async () => {
     try {
-   const provider2 = new ethers.JsonRpcProvider(uei);
+              const provider2 = new ethers.providers.JsonRpcProvider(uei);
         const contract = await fetchContract(provider2);
         const [leadingCandidateAddress, leadingVoteCount] = await contract.determineLeadingCandidate();
 
