@@ -483,7 +483,7 @@ const determineLeadingCandidate = async () => {
 const checkVotingEnded = async () => {
     try {
         const contract = await fetchContract(alchemyProvider);
-        const hasVotingEnded = await contract.votingEnded(); // Assuming votingEnded() is a contract method
+        const hasVotingEnded = await contract.isVotingEnded(); // Assuming votingEnded() is a contract method
         return hasVotingEnded;
     } catch (error) {
         console.error("Error checking if voting has ended:", error);
@@ -494,7 +494,7 @@ const checkVotingEnded = async () => {
 const checkVotingStart = async () => {
     try {
         const contract = await fetchContract(alchemyProvider);
-        const hasVotingstart = await contract.votingStarted(); // Assuming votingEnded() is a contract method
+        const hasVotingstart = await contract.isVotingStarted(); // Assuming votingEnded() is a contract method
         return hasVotingstart;
     } catch (error) {
         console.error("Error checking if voting has ended:", error);
