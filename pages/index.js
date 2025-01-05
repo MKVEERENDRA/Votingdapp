@@ -17,8 +17,8 @@ const Index = () => {
     candidateArray 
   } = useContext(VotingContext);
   const [leadingCandidate, setLeadingCandidate] = useState(null);
-  const [votingEnded, setVotingEnded] = useState(true);
-  const [votingstarted, setVotingstarted] = useState(true);
+  const [votingEnded, setVotingEnded] = useState(false);
+  const [votingstarted, setVotingstarted] = useState(false);
 
 
   useEffect(() => {
@@ -62,9 +62,9 @@ console.log("we",leadingCandidate);
           </div>
              {/* Leading Candidate Section */}
              <div className={Style.winner_message}>
-            {false ? (
+            {votingEnded ? (
               <p>Voting has ended. Check the winner in the results section.</p>
-            ) : true ? (
+            ) : leadingCandidate ? (
               <div>
                 <p>
                   <strong>
