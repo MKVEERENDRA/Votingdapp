@@ -22,7 +22,7 @@ export const VotingProvider = ({children})=>{
     const condidateIndex =[];
     const [candidateArray,setCandidateArray] = useState(pushCandedate);
     const [winner, setWinner] = useState(null); // State to hold the winner
-
+//m
     const [error,setError] =useState('');
     const pushVoters =[];
     const [voterArray,setVoterArray] = useState(pushVoters);
