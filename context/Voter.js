@@ -43,83 +43,83 @@ export const VotingProvider = ({children})=>{
         }
       };
 
-    const { address, isConnected } = useAccount();
+//     const { address, isConnected } = useAccount();
 
-  useEffect(() => {
-    if (isConnected) {
-      setCurrentAccount(address);
-    }
-  }, [isConnected, address]);
+//   useEffect(() => {
+//     if (isConnected) {
+//       setCurrentAccount(address);
+//     }
+//   }, [isConnected, address]);
 
-  useEffect(() => {
-    const initializeProvider = async () => { 
-      if (typeof window !== 'undefined' && window.ethereum) {
-        try {
-          await window.ethereum.request({ method: 'eth_requestAccounts' });
-          const browserProvider = new ethers.BrowserProvider(window.ethereum);
-          setProvider(browserProvider);
-          console.log("Connected to Ethereum network");
-          const walletSigner = await browserProvider.getSigner();
-          setSigner(walletSigner);
-          console.log("Connected to MetaMask");
-        } catch (error) {
-          console.error("Error connecting to MetaMask:", error);
-          toast.error("MetaMask connection failed");
+//   useEffect(() => {
+//     const initializeProvider = async () => { 
+//       if (typeof window !== 'undefined' && window.ethereum) {
+//         try {
+//           await window.ethereum.request({ method: 'eth_requestAccounts' });
+//           const browserProvider = new ethers.BrowserProvider(window.ethereum);
+//           setProvider(browserProvider);
+//           console.log("Connected to Ethereum network");
+//           const walletSigner = await browserProvider.getSigner();
+//           setSigner(walletSigner);
+//           console.log("Connected to MetaMask");
+//         } catch (error) {
+//           console.error("Error connecting to MetaMask:", error);
+//           toast.error("MetaMask connection failed");
            
+//         }
+//       } else {
+//         const defaultProvider = ethers.getDefaultProvider();
+//         setProvider(defaultProvider);
+//         setOpenerror(true),
+//         error(" MetaMask not installed; using read-only defaults");
+
+
+//       }
+//     };
+//     initializeProvider();
+//   }, []);
+// const connectwithsmartContract = async () =>{
+//   try {
+//     await window.ethereum.request({ method: 'eth_requestAccounts' });
+//     const browserProvider = new ethers.BrowserProvider(window.ethereum);
+//     console.log("Connected to Ethereum network1",browserProvider);
+//     const walletSigner = await browserProvider.getSigner();
+//     console.log("Connected to MetaMask1",walletSigner);
+//     const contract = fetchContract(walletSigner);
+//     console.log("contract", contract);
+//     return contract;
+//   } catch (error) {
+//     console.error("Error connecting to MetaMask1:", error);
+//     toast.error("MetaMask connection failed1");
+//   }
+// }
+      const connectWallet = async () => {
+        if (!window.ethereum) return setError("Please install MetaMask");
+        try {
+          const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+          setCurrentAccount(accounts[0]);
+          setIsConnected(true);
+         
+          setError(""); // Clear error on successful connection
+          window.location.reload();
+
+        } catch (err) {
+         
+            setError("Error connecting to MetaMask: " + err.message); // Ensure it's a string
         }
-      } else {
-        const defaultProvider = ethers.getDefaultProvider();
-        setProvider(defaultProvider);
-        setOpenerror(true),
-        error(" MetaMask not installed; using read-only defaults");
-
-
-      }
-    };
-    initializeProvider();
-  }, []);
-const connectwithsmartContract = async () =>{
-  try {
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
-    const browserProvider = new ethers.BrowserProvider(window.ethereum);
-    console.log("Connected to Ethereum network1",browserProvider);
-    const walletSigner = await browserProvider.getSigner();
-    console.log("Connected to MetaMask1",walletSigner);
-    const contract = fetchContract(walletSigner);
-    console.log("contract", contract);
-    return contract;
-  } catch (error) {
-    console.error("Error connecting to MetaMask1:", error);
-    toast.error("MetaMask connection failed1");
-  }
-}
-      // const connectWallet = async () => {
-      //   if (!window.ethereum) return setError("Please install MetaMask");
-      //   try {
-      //     const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-      //     setCurrentAccount(accounts[0]);
-      //     setIsConnected(true);
-         
-      //     setError(""); // Clear error on successful connection
-      //     window.location.reload();
-
-      //   } catch (err) {
-         
-      //       setError("Error connecting to MetaMask: " + err.message); // Ensure it's a string
-      //   }
-      // };
-      // Check if connected to MetaMask
-      // const checkIfconn  = async () => {
-      //   if (!window.ethereum) return setError("Please install MetaMask");
-      //   const account = await window.ethereum.request({ method: "eth_accounts" });
-      //   if (account.length) {
-      //     setCurrentAccount(account[0]);
-      //     setIsConnected(true);
-      //   } else {
-      //     setError("Please Connect to Wallet");
-      //     setIsConnected(false);
-      //   }
-      // };
+      };
+      Check if connected to MetaMask
+      const checkIfconn  = async () => {
+        if (!window.ethereum) return setError("Please install MetaMask");
+        const account = await window.ethereum.request({ method: "eth_accounts" });
+        if (account.length) {
+          setCurrentAccount(account[0]);
+          setIsConnected(true);
+        } else {
+          setError("Please Connect to Wallet");
+          setIsConnected(false);
+        }
+      };
   const uploadToIPFS = async (file) => {
     if (file) {
       try {
@@ -144,33 +144,33 @@ const connectwithsmartContract = async () =>{
     }
   };
 
-// const connectwithsmartContract = async () =>{
-//   try {
-//     const web3Modal = new Web3Modal({
-//         cacheProvider: true, // Optional
-//         providerOptions: {}, // Add any providers you want to support
-//     });
-//     console.log("xsa", web3Modal);
+const connectwithsmartContract = async () =>{
+  try {
+    const web3Modal = new Web3Modal({
+        cacheProvider: true, // Optional
+        providerOptions: {}, // Add any providers you want to support
+    });
+    console.log("xsa", web3Modal);
 
-//     // Connect to the wallet
-//     const provider = await web3Modal.connect();
-//     console.log("xsa", provider);
+    // Connect to the wallet
+    const provider = await web3Modal.connect();
+    console.log("xsa", provider);
 
-//     // Create a Web3 provider using ethers.js
-//     const ethersProvider = new ethers.providers.Web3Provider(provider);
-// console.log("xsa", ethersProvider);
-//     // Get the signer to sign transactions
-//     const signer = ethersProvider.getSigner();
-//     console.log("signer", signer);
-//     // Fetch your smart contract instance
-//     const contract = fetchContract(signer);
-//     console.log("xsa", contract);
-//     return contract;
-//   } catch (error) {
-//     console.error("Error connecting to MetaMask1:", error);
-//     setError(error);
-//   }
-// };
+    // Create a Web3 provider using ethers.js
+    const ethersProvider = new ethers.providers.Web3Provider(provider);
+console.log("xsa", ethersProvider);
+    // Get the signer to sign transactions
+    const signer = ethersProvider.getSigner();
+    console.log("signer", signer);
+    // Fetch your smart contract instance
+    const contract = fetchContract(signer);
+    console.log("xsa", contract);
+    return contract;
+  } catch (error) {
+    console.error("Error connecting to MetaMask1:", error);
+    setError(error);
+  }
+};
 const createVoter = async (name, image) => {
     try {
         // Log the inputs
