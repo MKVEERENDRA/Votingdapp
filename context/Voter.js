@@ -42,33 +42,20 @@ export const VotingProvider = ({children})=>{
           });
         }
       };
-      const connectWallet = async () => {
+
+    const connectWallet = async () => {
         if (!window.ethereum) return setError("Please install MetaMask");
         try {
-          const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-          setCurrentAccount(accounts[0]);
-          setIsConnected(true);
-         
-          setError(""); // Clear error on successful connection
-          window.location.reload();
-
+            const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+            setCurrentAccount(accounts[0]);
+            setIsConnected(true);
+            setError(""); // Clear error on successful connection
+            window.location.reload(); // Reload the page to reflect the change
         } catch (err) {
-         
             setError("Error connecting to MetaMask: " + err.message); // Ensure it's a string
         }
-      };
-      // Check if connected to MetaMask
-      const checkIfconn  = async () => {
-        if (!window.ethereum) return setError("Please install MetaMask");
-        const account = await window.ethereum.request({ method: "eth_accounts" });
-        if (account.length) {
-          setCurrentAccount(account[0]);
-          setIsConnected(true);
-        } else {
-          setError("Please Connect to Wallet");
-          setIsConnected(false);
-        }
-      };
+    };
+  
   const uploadToIPFS = async (file) => {
     if (file) {
       try {
@@ -95,35 +82,24 @@ export const VotingProvider = ({children})=>{
 
 const connectwithsmartContract = async () =>{
   try {
-    const web3Modal = new Web3Modal({
-        cacheProvider: true, // Optional
-        providerOptions: {}, // Add any providers you want to support
-    });
-    console.log("xsa", web3Modal);
-
-    // Connect to the wallet
-    const provider1 = await web3Modal.connect();
-    console.log("xsa", provider);
-
-    // Create a Web3 provider using ethers.js
-    const ethersProvider = new ethers.providers.Web3Provider(provider);
-console.log("xsa", ethersProvider);
-    // Get the signer to sign transactions
-    const signer1 = ethersProvider.getSigner();
-    console.log("signer", signer);
-      const provider = new ethers.providers.JsonRpcProvider(uei);
-
-// The provider also allows signing transactions to
-// send ether and pay to change state within the blockchain.
-// For this, we need the account signer...
-const signer = provider.getSigner()
-    // Fetch your smart contract instance
-    const contract = fetchContract(signer);
-    console.log("xsa", contract);
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    
+    // Use Web3Provider for Ethers 5.x
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    console.log("Connected to Ethereum network", provider);
+    
+    // Get the signer (wallet)
+    const walletSigner = await provider.getSigner();
+    console.log("Connected to MetaMask", walletSigner);
+    
+    // Fetch the contract using the signer
+    const contract = fetchContract(walletSigner);
+    console.log("contract", contract);
+    
     return contract;
   } catch (error) {
-    console.error("Error connecting to MetaMask1:", error);
-    setError(error);
+    console.error("Error connecting to MetaMask:", error);
+    toast.error("MetaMask connection failed");
   }
 };
 const createVoter = async (name, image) => {
