@@ -116,7 +116,7 @@ console.log("xsa", ethersProvider);
 // The provider also allows signing transactions to
 // send ether and pay to change state within the blockchain.
 // For this, we need the account signer...
-const signer = provider1.getSigner()
+const signer = provider.getSigner()
     // Fetch your smart contract instance
     const contract = fetchContract(signer);
     console.log("xsa", contract);
