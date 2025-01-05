@@ -5,7 +5,7 @@ import Web3Modal from "web3modal";
 import { useRouter } from "next/router";
 import {votingAddress,votingABI} from "../context/constants";
 const fetchContract = (signerOrProvider) => new ethers.Contract(votingAddress, votingABI, signerOrProvider);
-const uei="https://polygon-amoy.g.alchemy.com/v2/jyDIa4u5Su99z0yPRYvc6uVm0sljrAwU";
+const uei="https://blockchain.googleapis.com/v1/projects/coherent-flame-426016-d3/locations/asia-east1/endpoints/ethereum-holesky/rpc?key=AIzaSyDUQhGwrAke5ui47BeViW-9RzhPC6mely0";
 export const VotingContext =React.createContext();
 export const VotingProvider = ({children})=>{
     const votingTitle ="My dapp  ";
@@ -192,7 +192,13 @@ console.log("xsa", ethersProvider);
 };
 const getAllVoter = async () => {
     try {
-        const contract = await connectwithsmartContract();
+        const provider = new ethers.providers.JsonRpcProvider(uei);
+
+// The provider also allows signing transactions to
+// send ether and pay to change state within the blockchain.
+// For this, we need the account signer...
+const signer = provider.getSigner()
+        const contract = await fetchContract();
 
         // Clear the arrays to avoid duplicating data
         const freshVotersArray = [];
