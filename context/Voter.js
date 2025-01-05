@@ -82,18 +82,19 @@ export const VotingProvider = ({children})=>{
 
 const connectwithsmartContract = async () =>{
   try {
-    await window.ethereum.request({ method: 'eth_requestAccounts' });
     
     // Use Web3Provider for Ethers 5.x
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     console.log("Connected to Ethereum network", provider);
-    
+    await provider.send("eth_requestAccounts", []);
+
     // Get the signer (wallet)
-    const walletSigner = await provider.getSigner();
-    console.log("Connected to MetaMask", walletSigner);
+      const signer = provider.getSigner()
+
+    console.log("Connected to MetaMask", signer);
     
     // Fetch the contract using the signer
-    const contract = fetchContract(walletSigner);
+    const contract = fetchContract(signer);
     console.log("contract", contract);
     
     return contract;
