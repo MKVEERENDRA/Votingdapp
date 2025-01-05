@@ -392,7 +392,7 @@ const registerCandidate = async (candidateAddress, age, name, image, ipfs) => {
 // Get all candidate addresses
      const checkVotingStart = async () => {
     try {
-      const contract = await fetchContractInstance();
+      const contract = await fetchContract(alchemyProvider);
       const hasVotingStarted = await contract.isVotingStarted();
       return hasVotingStarted;
     } catch (error) {
@@ -404,7 +404,7 @@ const registerCandidate = async (candidateAddress, age, name, image, ipfs) => {
   // Check if voting has ended
   const checkVotingEnded = async () => {
     try {
-      const contract = await fetchContractInstance();
+      const contract = await fetchContract(alchemyProvider);
       const hasVotingEnded = await contract.isVotingEnded();
       return hasVotingEnded;
     } catch (error) {
