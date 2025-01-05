@@ -192,8 +192,8 @@ console.log("xsa", ethersProvider);
 };
 const getAllVoter = async () => {
     try {
-              const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract = await fetchContract(provider2);
+              const provider2 = new ethers.JsonRpcProvider(uei);
+        const contract =  fetchContract(provider2);
 
 
         // Clear the arrays to avoid duplicating data
@@ -256,8 +256,8 @@ window.location.reload();
 };
 const checkVotingEnded = async () => {
     try {
-              const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract = await fetchContract(provider2);
+              const provider2 = new ethers.JsonRpcProvider(uei);
+        const contract =  fetchContract(provider2);
         const hasVotingEnded = await contract.votingEnded(); // Assuming votingEnded() is a contract method
         return hasVotingEnded;
     } catch (error) {
@@ -268,8 +268,8 @@ const checkVotingEnded = async () => {
 };
 const checkVotingStart = async () => {
     try {
-              const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract = await fetchContract(provider2);
+              const provider2 = new ethers.JsonRpcProvider(uei);
+        const contract =  fetchContract(provider2);
         const hasVotingstart = await contract.votingStarted(); // Assuming votingEnded() is a contract method
         return hasVotingstart;
     } catch (error) {
@@ -412,7 +412,7 @@ const registerCandidate = async (candidateAddress, age, name, image, ipfs) => {
 const getCandidates = async () => {
     try {
    const provider2 = new ethers.JsonRpcProvider(uei);
-        const contract = await fetchContract(provider2);
+        const contract =  fetchContract(provider2);
         // Clear the arrays to avoid duplicating data
         const freshCandidatesArray = [];
         const freshCandidateIndex = [];
@@ -457,8 +457,8 @@ const getCandidates = async () => {
 
 const getCandidateData = async (candidateAddress) => {
     try {
-              const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract = await fetchContract(provider2);
+              const provider2 = new ethers.JsonRpcProvider(uei);
+        const contract =  fetchContract(provider2);
         const candidateData = await contract.getCandidateData(candidateAddress);
         console.log("Candidate data:", candidateData);
         return candidateData;
@@ -470,8 +470,8 @@ const getCandidateData = async (candidateAddress) => {
 // Inside VotingContext
 const determineLeadingCandidate = async () => {
     try {
-              const provider2 = new ethers.providers.JsonRpcProvider(uei);
-        const contract = await fetchContract(provider2);
+              const provider2 = new ethers.JsonRpcProvider(uei);
+        const contract =  fetchContract(provider2);
         const [leadingCandidateAddress, leadingVoteCount] = await contract.determineLeadingCandidate();
 
         // Fetch additional candidate data like name or other details if needed
