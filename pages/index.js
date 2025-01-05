@@ -17,8 +17,8 @@ const Index = () => {
     candidateArray 
   } = useContext(VotingContext);
   const [leadingCandidate, setLeadingCandidate] = useState(null);
-  const [votingEnded, setVotingEnded] = useState(false);
-  const [votingstarted, setVotingstarted] = useState(false);
+  const [votingEnded, setVotingEnded] = useState(true);
+  const [votingstarted, setVotingstarted] = useState(true);
 
 
   useEffect(() => {
