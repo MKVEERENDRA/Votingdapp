@@ -483,7 +483,7 @@ const signer = provider.getSigner()
 // Inside VotingContext
 const determineLeadingCandidate = async () => {
     try {
-        const contract = await connectwithsmartContract();  // Connect to the smart contract
+        const contract = await fetchContract(alchemyProvider);
         const [leadingCandidateAddress, leadingVoteCount] = await contract.determineLeadingCandidate();
 
         // Fetch additional candidate data like name or other details if needed
