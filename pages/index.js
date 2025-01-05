@@ -10,7 +10,7 @@ const Index = () => {
     vote, 
     voterlength, 
     determineLeadingCandidate ,
-    checkVotingEnded,   // <-- Destructure the new method
+    checkVotingEnded,   // <-- Destructure the new metho
     checkVotingStart,
     currentAccount, 
     CandidateLength, 
