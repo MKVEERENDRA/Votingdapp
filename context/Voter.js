@@ -42,57 +42,6 @@ export const VotingProvider = ({children})=>{
           });
         }
       };
-
-//     const { address, isConnected } = useAccount();
-
-//   useEffect(() => {
-//     if (isConnected) {
-//       setCurrentAccount(address);
-//     }
-//   }, [isConnected, address]);
-
-//   useEffect(() => {
-//     const initializeProvider = async () => { 
-//       if (typeof window !== 'undefined' && window.ethereum) {
-//         try {
-//           await window.ethereum.request({ method: 'eth_requestAccounts' });
-//           const browserProvider = new ethers.BrowserProvider(window.ethereum);
-//           setProvider(browserProvider);
-//           console.log("Connected to Ethereum network");
-//           const walletSigner = await browserProvider.getSigner();
-//           setSigner(walletSigner);
-//           console.log("Connected to MetaMask");
-//         } catch (error) {
-//           console.error("Error connecting to MetaMask:", error);
-//           toast.error("MetaMask connection failed");
-           
-//         }
-//       } else {
-//         const defaultProvider = ethers.getDefaultProvider();
-//         setProvider(defaultProvider);
-//         setOpenerror(true),
-//         error(" MetaMask not installed; using read-only defaults");
-
-
-//       }
-//     };
-//     initializeProvider();
-//   }, []);
-// const connectwithsmartContract = async () =>{
-//   try {
-//     await window.ethereum.request({ method: 'eth_requestAccounts' });
-//     const browserProvider = new ethers.BrowserProvider(window.ethereum);
-//     console.log("Connected to Ethereum network1",browserProvider);
-//     const walletSigner = await browserProvider.getSigner();
-//     console.log("Connected to MetaMask1",walletSigner);
-//     const contract = fetchContract(walletSigner);
-//     console.log("contract", contract);
-//     return contract;
-//   } catch (error) {
-//     console.error("Error connecting to MetaMask1:", error);
-//     toast.error("MetaMask connection failed1");
-//   }
-// }
       const connectWallet = async () => {
         if (!window.ethereum) return setError("Please install MetaMask");
         try {
@@ -108,7 +57,7 @@ export const VotingProvider = ({children})=>{
             setError("Error connecting to MetaMask: " + err.message); // Ensure it's a string
         }
       };
-      Check if connected to MetaMask
+      // Check if connected to MetaMask
       const checkIfconn  = async () => {
         if (!window.ethereum) return setError("Please install MetaMask");
         const account = await window.ethereum.request({ method: "eth_accounts" });
@@ -549,4 +498,3 @@ const determineLeadingCandidate = async () => {
             createVoter}}>{children}</VotingContext.Provider>
     )
 }
-
