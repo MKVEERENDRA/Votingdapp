@@ -102,15 +102,21 @@ const connectwithsmartContract = async () =>{
     console.log("xsa", web3Modal);
 
     // Connect to the wallet
-    const provider = await web3Modal.connect();
+    const provider1 = await web3Modal.connect();
     console.log("xsa", provider);
 
     // Create a Web3 provider using ethers.js
     const ethersProvider = new ethers.providers.Web3Provider(provider);
 console.log("xsa", ethersProvider);
     // Get the signer to sign transactions
-    const signer = ethersProvider.getSigner();
+    const signer1 = ethersProvider.getSigner();
     console.log("signer", signer);
+      const provider = new ethers.providers.JsonRpcProvider(uei);
+
+// The provider also allows signing transactions to
+// send ether and pay to change state within the blockchain.
+// For this, we need the account signer...
+const signer = provider1.getSigner()
     // Fetch your smart contract instance
     const contract = fetchContract(signer);
     console.log("xsa", contract);
