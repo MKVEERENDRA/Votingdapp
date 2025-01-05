@@ -64,7 +64,7 @@ console.log("we",leadingCandidate);
              <div className={Style.winner_message}>
             {false ? (
               <p>Voting has ended. Check the winner in the results section.</p>
-            ) : leadingCandidate ? (
+            ) : true ? (
               <div>
                 <p>
                   <strong>
