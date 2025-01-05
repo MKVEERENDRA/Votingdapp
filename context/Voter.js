@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import {votingAddress,votingABI} from "../context/constants";
 const fetchContract = (signerOrProvider) => new ethers.Contract(votingAddress, votingABI, signerOrProvider);
 const uei="https://blockchain.googleapis.com/v1/projects/coherent-flame-426016-d3/locations/asia-east1/endpoints/ethereum-holesky/rpc?key=AIzaSyDUQhGwrAke5ui47BeViW-9RzhPC6mely0";
+const alchemyProvider = new ethers.providers.JsonRpcProvider(uei);
 export const VotingContext =React.createContext();
 export const VotingProvider = ({children})=>{
     const votingTitle ="My dapp  ";
@@ -198,7 +199,7 @@ const getAllVoter = async () => {
 // send ether and pay to change state within the blockchain.
 // For this, we need the account signer...
 const signer = provider.getSigner()
-        const contract = await fetchContract(signer);
+        const contract = await fetchContract(alchemyProvider);
         // Clear the arrays to avoid duplicating data
         const freshVotersArray = [];
 
@@ -419,7 +420,7 @@ const getCandidates = async () => {
 // send ether and pay to change state within the blockchain.
 // For this, we need the account signer...
 const signer = provider.getSigner()
-        const contract = await fetchContract(signer);
+        const contract = await fetchContract(alchemyProvider);
         // Clear the arrays to avoid duplicating data
         const freshCandidatesArray = [];
         const freshCandidateIndex = [];
@@ -470,7 +471,7 @@ const getCandidateData = async (candidateAddress) => {
 // send ether and pay to change state within the blockchain.
 // For this, we need the account signer...
 const signer = provider.getSigner()
-        const contract = await fetchContract(signer);
+        const contract = await fetchContract(alchemyProvider);
         const candidateData = await contract.getCandidateData(candidateAddress);
         console.log("Candidate data:", candidateData);
         return candidateData;
