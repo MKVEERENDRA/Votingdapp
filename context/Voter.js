@@ -3,8 +3,13 @@ import {ethers} from "ethers";
 import axios from "axios";
 import Web3Modal from "web3modal";
 import { useRouter } from "next/router";
+import { createJWT, verifyJWT } from 'did-jwt';
+import { EthrDID } from 'ethr-did';
+
 import {votingAddress,votingABI} from "../context/constants";
+import {didAddress,didAbi} from "../context/con";
 const fetchContract = (signerOrProvider) => new ethers.Contract(votingAddress, votingABI, signerOrProvider);
+const fetchdidContract =(signerOrProvider) => new ethers.Contract(didAddress,didAbi,signerOrProvider);
 const uei="https://eth-holesky.g.alchemy.com/v2/jyDIa4u5Su99z0yPRYvc6uVm0sljrAwU";
 const alchemyProvider = new ethers.providers.JsonRpcProvider(uei);
 export const VotingContext =React.createContext();
@@ -15,6 +20,7 @@ export const VotingProvider = ({children})=>{
     const [candidate,setCandidate] = useState("");
     const [CandidateLength,setCandidateLength] =useState('');
     const [isConnected, setIsConnected] = useState(false);
+    const [provider,setProvider] =useState(" ");
     const [ipfs, setIpfs] = useState("");
     const [ipfs1, setIpfs1] = useState("");
 
@@ -28,6 +34,8 @@ export const VotingProvider = ({children})=>{
     const [voterArray,setVoterArray] = useState(pushVoters);
     const [voterlength,setVoterLength] = useState([]);
     const [voterAddress,setVoterAddress] =useState([]);
+    const [address,setAddress] =useState([]);
+
     const handleAccountChange = () => {
         if (window.ethereum) {
           window.ethereum.on("accountsChanged", (accounts) => {
@@ -70,6 +78,105 @@ export const VotingProvider = ({children})=>{
           setIsConnected(false);
         }
       };
+
+// Connect to the smart contract
+const connectWithDIDContract = async () => {
+  try {
+      const web3Modal = new Web3Modal({
+          cacheProvider: true,
+          providerOptions: {},
+      });
+
+      const provider = await web3Modal.connect();
+      const ethersProvider = new ethers.providers.Web3Provider(provider);
+      setProvider(ethersProvider);
+      const signer = ethersProvider.getSigner();
+      const contract = fetchdidContract(signer);
+      return contract;
+  } catch (error) {
+      console.error("Error connecting to DID smart contract:", error);
+      throw new Error("Failed to connect to DID smart contract.");
+  }
+};
+
+// Issue a DID (Only the owner can do this)
+ const issueDID = async (userAddress, did, aadhaar) => {
+  try {
+      const contract = await connectWithDIDContract();
+      const tx = await contract.issueDID(userAddress, did, aadhaar);
+      await tx.wait();
+      console.log("DID issued successfully:", tx);
+  } catch (error) {
+      console.error("Error issuing DID:", error);
+  }
+};
+
+// Verify if a DID exists and fetch details
+ const fetchDID = async (userAddress) => {
+  try {
+      const contract = await connectWithDIDContract();
+      const didDetails = await contract.verifyDID(userAddress);
+      const [verified, did, aadhaar] = didDetails;
+      
+      console.log("Fetched DID details:", { verified, did, aadhaar });
+      return { verified, did, aadhaar };
+  } catch (error) {
+      console.error("Error fetching DID:", error);
+      return null;
+  }
+};
+
+// Mark a DID as verified (Only the owner can do this)
+ const verifyUserDID = async (userAddress) => {
+  try {
+      const contract = await connectWithDIDContract();
+      const tx = await contract.verifyUserDID(userAddress);
+      await tx.wait();
+      console.log("DID verified successfully:", tx);
+  } catch (error) {
+      console.error("Error verifying DID:", error);
+  }
+};
+
+
+// Function to create a DID
+const provider23 = new ethers.providers.JsonRpcProvider(uei);
+
+const wallet = new ethers.Wallet("441622d176d37f6320840a8147a0f9399b4a61ae0b66b0c2604dace6e5fd441c",provider23);
+
+// Function to create a JWT with Aadhaar
+const createDidJwt = async (did, payload) => {
+  try {
+    const signer = wallet;  // Use the wallet as signer
+    console.log('Signer:', wallet); // Log the wallet object to check its properties
+
+
+    // Create JWT (example: using DID JWT library)
+    const jwt = await createJWT(payload, { issuer: did, signer:wallet,      alg: 'ES256K', // Specify the algorithm
+    });
+    
+    console.log('JWT created:', jwt);
+    localStorage.setItem('userJWT', jwt); // Store JWT in local storage
+    return jwt;
+  } catch (error) {
+    console.error('Error creating JWT:', error);
+    setError(error.message);
+  }
+};
+
+// Function to verify a JWT
+const verifyDidJwt = async (jwt, did) => {
+  try {
+    const verified = await verifyJWT(jwt, { resolver: did.resolver });
+    console.log('JWT verified:', verified);
+    return verified;
+  } catch (error) {
+    console.error('Error verifying JWT:', error);
+    setError(error.message);
+  }
+};
+
+
   const uploadToIPFS = async (file) => {
     if (file) {
       try {
@@ -198,7 +305,7 @@ const getAllVoter = async () => {
 // The provider also allows signing transactions to
 // send ether and pay to change state within the blockchain.
 // For this, we need the account signer...
-const signer = provider.getSigner()
+const signer = provider.getSigner();
         const contract = await fetchContract(alchemyProvider);
         // Clear the arrays to avoid duplicating data
         const freshVotersArray = [];
@@ -506,7 +613,7 @@ const determineLeadingCandidate = async () => {
     return(
         <VotingContext.Provider value={{votingTitle,checkIfconn,connectWallet,uploadToIPFS,
             getCandidates,startVoting,endVoting,vote,determineLeadingCandidate,checkVotingStart,checkVotingEnded,
-            getCandidateData,registerCandidate,error,getAllVoter,resetVoting,winner,
+            getCandidateData,registerCandidate,error,getAllVoter,resetVoting,winner,createDidJwt,verifyDidJwt,verifyUserDID,issueDID,fetchDID,
             voterArray,voterAddress,voterlength,currentAccount,CandidateLength,candidateArray,pushCandedate,
             createVoter}}>{children}</VotingContext.Provider>
     )

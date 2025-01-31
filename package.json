@@ -9,10 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nomiclabs/hardhat-etherscan": "^3.1.8",
+    "@nomiclabs/hardhat-waffle": "^2.0.6",
     "@openzeppelin/contracts": "^4.7.0",
     "axios": "^0.27.2",
+    "did-jwt": "^8.0.8",
     "dotenv": "^16.0.1",
     "ethers": "^5.7.2",
+    "ethr-did": "^3.0.25",
+    "ethr-did-resolver": "^11.0.3",
     "next": "12.2.1",
     "react": "18.2.0",
     "react-countdown": "^2.3.2",
@@ -20,5 +25,8 @@
     "react-dropzone": "^14.2.2",
     "react-icons": "^4.12.0",
     "web3modal": "^1.9.8"
+  },
+  "devDependencies": {
+    "hardhat": "^2.22.18"
   }
 }

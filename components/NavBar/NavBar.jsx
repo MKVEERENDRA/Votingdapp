@@ -66,12 +66,16 @@ const NavBar = () => {
           <Link href="/candidate">
             <a>Register Candidate</a>
           </Link>
+          <Link href="/R_did">
+            <a>Register Did Proof</a>
+          </Link>
           <Link href="/allowed-voters">
             <a>Register Voter</a>
           </Link>
           <Link href="/voterList">
             <a>Voters details</a>
           </Link>
+         
         </div>
         
         <div className={Style.connect}>

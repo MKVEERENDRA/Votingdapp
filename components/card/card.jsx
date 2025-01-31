@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import  images from "../../assets";
 import Style from "./card.module.css";
 
 const Card = ({ candidateArray, vote }) => {
