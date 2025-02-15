@@ -1,42 +1,57 @@
 import React from "react";
-import Image from "next/image";
-import  images from "../../assets";
+import Tilt from "react-parallax-tilt";
 import Style from "./card.module.css";
 
 const Card = ({ candidateArray, vote }) => {
   return (
-    <div className={Style.card}>
+    <div className={Style.card_container}>
       {candidateArray.map((candidate, i) => (
-        <div key={i} className={Style.card_box}>
-          {/* Image Section */}
-          <div className={Style.image}>
-            <img
-              src={candidate.imageUrl} // Access image URL
-              alt={`Candidate ${candidate.name}`}
-              width={150}
-              height={150}
-            />
-          </div>
+        <Tilt
+          key={i}
+          className={Style.card_box}
+          tiltMaxAngleX={15}
+          tiltMaxAngleY={15}
+          perspective={1000}
+          glareEnable={true}
+          glareMaxOpacity={0.4}
+          glareColor="#ffffff"
+          glarePosition="bottom"
+          transitionSpeed={400}
+        >
+                     <div className={Style.inner_element}>
 
-          {/* Candidate Info */}
-          <div className={Style.card_info}>
-            <h3>Name:{" "} {candidate.name}</h3> {/* Candidate Name */}
-            <p>Age: {candidate.age}</p> {/* Candidate Age */}
-            <p>Candidate Number: #{candidate.candidateNumber}</p> {/* Candidate Number */}
-            <p>Address: {candidate.address.slice(0, 10)}...</p> {/* Candidate Address */}
-          
-            <p className={Style.total}>Total Votes: {candidate.voteCount}</p> {/* Vote Count */}
-          </div>
-          
+          <div className={Style.card_content}>
+            {/* Image Section */}
+            <div className={Style.image}>
+              <img
+                src={candidate.imageUrl}
+                alt={`Candidate ${candidate.name}`}
+              />
+            </div>
 
-          {/* Vote Button */}
-          <div className={Style.card_button}>
-            
-            <button onClick={() => vote(candidate.candidateNumber)}> {/* Use candidateNumber as ID */}
-              Vote
-            </button>
+            {/* Candidate Info */}
+            <div className={Style.card_info}>
+              <h3>{candidate.name}</h3>
+              <p>Age: {candidate.age}</p>
+              <p>Candidate Number: #{candidate.candidateNumber}</p>
+              <p>Address: {candidate.address.slice(0, 10)}...</p>
+              <p className={Style.total}>Total Votes:
+                {" "}
+                <span className={Style.span_total}>
+                  {" "}
+                 {candidate.voteCount}
+                 </span>
+                 </p>
+           
+            </div>
+
+            {/* Vote Button */}
+            <div className={Style.card_button}>
+              <button onClick={() => vote(candidate.candidateNumber)}>Vote</button>
+            </div>
           </div>
-        </div>
+          </div>
+        </Tilt>
       ))}
     </div>
   );

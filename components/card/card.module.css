@@ -1,78 +1,131 @@
-.card {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Smaller cards */
-    gap: 1rem; /* Reduced gap between cards */
-    padding: 1rem; /* Reduced padding around the card container */
-  }
-  
-  .card_box {
-    background: linear-gradient(145deg, #292929, #222222); /* Dark gradient background */
-    border-radius: 8px; /* Slightly smaller border radius */
-    padding: 1rem; /* Reduced padding inside each card */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Lighter shadow for a subtle effect */
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
-    position: relative;
-    overflow: hidden; /* Ensures elements do not overflow */
-  }
-  
-  .card_box:hover {
-    transform: translateY(-3px); /* Slight lift on hover */
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Deeper shadow on hover */
-  }
-  
-  .image img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px; /* Rounds the corners of the image */
-    transition: transform 0.3s; /* Smooth image scaling */
-  }
-  
-  .card_box:hover .image img {
-    transform: scale(1.03); /* Slightly scales the image on hover */
-  }
-  
-  .card_info {
-    margin-top: 0.5rem; /* Reduced margin for tighter layout */
-    color: #fff; /* White text for better readability */
-  }
-  
-  .card_info h3 {
-    font-size: 1.25rem; /* Smaller font size for the name */
-    color: var(--secondary-color); /* Use accent color for names */
-  }
-  
-  .card_vote {
-    font-size: 1rem; /* Slightly smaller font size for votes */
-    color: var(--secondary-color);
-  }
-  
-  .total {
-    background-color: var(--main-color);
-    padding: 0.5rem;
-    margin-top: 0.5rem; /* Reduced margin */
-    border-radius: 4px; /* Slight rounding for total votes */
-    color: #fff; /* White text for better readability */
-  }
-  
-  .card_button {
-    margin-top: 0.5rem; /* Reduced margin above button */
-  }
-  
-  .card_button button {
-    padding: 0.5rem 1rem; /* Smaller padding */
-    font-size: 0.9rem; /* Smaller font size */
-    background-color: var(--secondary-color);
-    color: #fff;
-    border: none;
-    border-radius: 4px; /* Slightly smaller border radius */
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s; /* Smooth button hover effect */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  }
-  
-  .card_button button:hover {
-    background-color: #ff668a; /* Slightly lighter on hover */
-    transform: translateY(-1px); /* Slight lift effect on hover */
-  }
-  
+/* 📌 Card Grid Layout */
+.card_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive grid */
+  gap: 1rem;
+  padding: 1.5rem;
+  justify-content: center;
+}
+
+/* 📌 Parallax Effect */
+.card_box {
+  background: linear-gradient(145deg, #1e1e1e, #292929);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  text-align: center;
+  overflow: hidden;
+  height: 100%; /* Ensures equal height for all cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Distributes space properly */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card_box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+/* 📌 Image Styling (Fixed Height & Width) */
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px; /* Ensures all images have equal height */
+  overflow: hidden;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Prevents distortion */
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card_box:hover .image img {
+  transform: scale(1.05);
+}
+
+/* 📌 Candidate Info */
+.card_info {
+  margin-top: 0.75rem;
+  color: #fff;
+  flex-grow: 1; /* Ensures proper spacing */
+}
+
+.card_info h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ff668a;
+  margin-bottom: 0.3rem;
+}
+
+.card_info p {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+/* 📌 Total Votes */
+.total {
+  background-color: #ff668a;
+  padding: 0.5rem;
+  margin-top: 0.6rem;
+  border-radius: 6px;
+  font-weight: bold;
+  color: #fff;
+}
+.span_total {
+  background: linear-gradient(135deg, #f1ebee, #b1c52e); /* Eye-catching gradient */
+  padding: 0.4rem 1rem; /* More padding for emphasis */
+  margin-top: 0.6rem;
+  color: #fff; /* White text for contrast */
+  font-weight: bold;
+  font-size: 1.2rem; /* Slightly larger font */
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 5px 15px rgba(255, 0, 76, 0.4); /* Glow effect */
+  display: inline-block; /* Keep it aligned properly */
+  text-transform: uppercase; /* Stylish uppercase text */
+  letter-spacing: 1px; /* Improve readability */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.span_total:hover {
+  transform: scale(1.1); /* Slight zoom effect on hover */
+  box-shadow: 0 8px 20px rgba(255, 0, 76, 0.6);
+}
+
+
+/* 📌 Vote Button */
+.card_button {
+  margin-top: 0.75rem;
+}
+
+.card_button button {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  background: #ff668a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s ease-in-out;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card_button button:hover {
+  background-color: #ff4470;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.card_button button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.inner_element {
+  transform: translateZ(40px) scale(1);
+ 
+}

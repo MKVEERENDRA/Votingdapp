@@ -1,0 +1,103 @@
+/* 📌 Voter Card Container */
+.card {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Responsive layout */
+  gap: 1.2rem;
+  padding: 1.5rem;
+  justify-content: center;
+}
+
+/* 📌 Individual Voter Card */
+.card_box {
+  background: linear-gradient(145deg, #1e1e1e, #292929);
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card_box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* 📌 Image Styling */
+.image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 140px; /* Fixed height */
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card_box:hover .image img {
+  transform: scale(1.05);
+}
+
+/* 📌 Voter Info */
+.card_info {
+  margin-top: 0.75rem;
+  color: #f8f1f1;
+  flex-grow: 1;
+}
+
+.card_info h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #007bff; /* Blue for emphasis */
+  margin-bottom: 0.3rem;
+}
+
+.card_info p {
+  font-size: 0.95rem;
+  opacity: 0.85;
+}
+
+.card_info p:last-child {
+  margin-bottom: 0.5rem;
+}
+
+/* 📌 IPFS Link */
+.card_info a {
+  color: #ff4a57;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.card_info a:hover {
+  color: #d63040;
+  text-decoration: underline;
+}
+
+/* 📌 Vote Status Styling */
+.card_info p:nth-child(4) { 
+  font-weight: bold;
+  color: #ff4a57;
+}
+
+.card_info p:nth-child(4)::before {
+  content: "✔ ";
+  color: green;
+}
+
+.card_info p:nth-child(4):contains("No")::before {
+  content: "✖ ";
+  color: red;
+}

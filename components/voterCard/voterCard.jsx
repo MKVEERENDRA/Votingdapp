@@ -1,11 +1,24 @@
 import React from "react";
 import Image from "next/image";
-import Style from "../card/card.module.css";
+import Style from "./voterCard.module.css";
+import Tilt from "react-parallax-tilt";
+
 
 const VoterCard = ({ voterArray }) => {
   return (
     <div className={Style.card}>
       {voterArray.map((voter, i) => (
+         <Tilt
+         key={i}
+         className={Style.card_box}
+         glareEnable={true}
+         glareMaxOpacity={0.4}
+         glareColor="#ffffff"
+         glarePosition="bottom"
+         tiltMaxAngleX={15}
+         tiltMaxAngleY={15}
+         transitionSpeed={400}
+       >
         <div key={i} className={Style.card_box}>
           {/* Image Section */}
           <div className={Style.image}>
@@ -29,6 +42,7 @@ const VoterCard = ({ voterArray }) => {
             </p>
           </div>
         </div>
+        </Tilt>
       ))}
     </div>
   );
