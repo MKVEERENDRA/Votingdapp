@@ -30,10 +30,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/voterList": [
+    "/candidate": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/voterList.js"
+      "static/chunks/pages/candidate.js"
     ]
   },
   "ampFirstPages": []

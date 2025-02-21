@@ -1,0 +1,210 @@
+/* Common styling for all buttons */
+.theme-options button {
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.3s, padding 0.3s, transform 0.3s;
+    border-radius: var(--border-radius);
+    border: 2px solid transparent; /* Default border style */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    position: relative;
+}
+
+/* Hover effect for all buttons */
+.theme-options button:hover {
+    background:mediumvioletred;
+    transform: scale(1.05); /* Slightly increase size on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+}
+
+/* Unique styling for each theme button */
+.royal-gold-theme-btn {
+    background: #FFD700; /* Gold */
+    color: #1C1C1C; /* Dark text */
+    border: 2px solid #B8860B; /* Darker Gold border */
+}
+
+.default-theme-btn {
+    background: var(--primary-color); /* Vibrant Purple */
+    color: #FFFFFF; /* White text */
+    border: 2px dotted #FFD700; /* Gold border */
+    box-shadow: 7px 4px 8px rgba(0, 0, 0, 0.3); /* Slight shadow for emphasis */
+}
+
+.dark-mode-btn {
+    background: #FF6347; /* Coral */
+    color: #FFFFFF; /* White text */
+    border: 2px solid #FF4500; /* Orange Red border */
+}
+
+.neon-glow-btn {
+    background: #39FF14; /* Neon Green */
+    color: #000000; /* Black text */
+    border: 2px solid #00FFFB; /* Neon Blue border */
+}
+
+.pastel-palette-btn {
+    background: #FFA7C4; /* Pastel Pink */
+    color: #333333; /* Dark text */
+    border: 2px solid #FFB6C1; /* Light Pink border */
+}
+
+.midnight-blue-theme-btn {
+    background: #191970; /* Midnight Blue */
+    color: #F8F8FF; /* Light text */
+    border: 2px solid #1E90FF; /* Dodger Blue border */
+}
+
+.emerald-green-theme-btn {
+    background: #50C878; /* Emerald Green */
+    color: #E0FFFF; /* Light text */
+    border: 2px solid #2F4F4F; /* Darker Green border */
+}
+
+.crimson-velvet-theme-btn {
+    background: #DC143C; /* Crimson */
+    color: #FFFFFF; /* White text */
+    border: 2px solid #8B0000; /* Dark Red border */
+}
+
+.silver-sapphire-theme-btn {
+    background: #C0C0C0; /* Silver */
+    color: #0F52BA; /* Sapphire text */
+    border: 2px solid #A9A9A9; /* Darker Silver border */
+}
+
+.obsidian-amber-theme-btn {
+    background: #FFBF00; /* Amber */
+    color: #1C1C1C; /* Dark text */
+    border: 2px solid #FFA500; /* Orange border */
+}
+
+.platinum-ruby-theme-btn {
+    background: #E5E4E2; /* Platinum */
+    color: #8B0000; /* Ruby text */
+    border: 2px solid #DCDCDC; /* Light Platinum border */
+}
+
+/* Styling for the selected button */
+.theme-options button::selection {
+    padding: 15px; /* Increased padding for selected button */
+    border-width: 3px; /* Thicker border for emphasis */
+    border-color: var(--primary-color); /* Use primary color for selected border */
+    background: rgba(242, 255, 0, 0.2); /* Slightly darker background for selected button */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Enhanced shadow for selected button */
+    transform: scale(8.05); /* Slightly increase size for selected button */
+}
+
+/* Styling for the fixed theme switch button */
+.theme-switcher-btn {
+    position: fixed;
+    bottom: 10px;
+    left: 20px; /* Align button to the left */
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--box-shadow);
+    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.theme-switcher-btn:hover {
+    background: var(--hover-color);
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+.theme-switcher-btn:focus {
+    outline: none;
+}
+
+/* Styling for the theme options dropdown */
+.theme-options {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    left: 20px; /* Align dropdown to the left */
+    background: var(--background-color); /* Dynamic background */
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow-2);
+    padding: 10px;
+    width: 200px;
+    z-index: 1000;
+    transition: background 0.3s, box-shadow 0.3s; /* Smooth transition for background and shadow */
+}
+
+.theme-options.show {
+    display: block;
+}
+
+/* Container background based on theme */
+[data-theme='default-theme'] .theme-options {
+    background: var(--main-bg-color);
+}
+
+[data-theme='royal-gold-theme'] .theme-options {
+    background: #1C1C1C; /* Dark background for Royal Gold */
+}
+
+[data-theme='dark-mode'] .theme-options {
+    background: #2C2C2C; /* Dark background for Dark Mode */
+}
+
+[data-theme='neon-glow'] .theme-options {
+    background: #121212; /* Dark background for Neon Glow */
+}
+
+[data-theme='pastel-palette'] .theme-options {
+    background: #F5F5F5; /* Light background for Pastel Palette */
+}
+
+[data-theme='midnight-blue-theme'] .theme-options {
+    background: #0B0B45; /* Dark background for Midnight Blue */
+}
+
+[data-theme='emerald-green-theme'] .theme-options {
+    background: #013220; /* Dark background for Emerald Green */
+}
+
+[data-theme='crimson-velvet-theme'] .theme-options {
+    background: #2B0000; /* Dark background for Crimson Velvet */
+}
+
+[data-theme='silver-sapphire-theme'] .theme-options {
+    background: #0A0A0A; /* Dark background for Silver & Sapphire */
+}
+
+[data-theme='obsidian-amber-theme'] .theme-options {
+    background: #2F2F2F; /* Dark background for Obsidian & Amber */
+}
+
+[data-theme='platinum-ruby-theme'] .theme-options {
+    background: #141414; /* Dark background for Platinum & Ruby */
+}
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    .theme-switcher-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+
+    .theme-options {
+        bottom: 70px;
+        left: 20px; /* Align dropdown to the left */
+        width: 150px;
+    }
+
+    .theme-options button {
+        padding: 8px;
+    }
+}

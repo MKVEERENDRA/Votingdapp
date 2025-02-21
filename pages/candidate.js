@@ -3,6 +3,7 @@ import { useDropzone } from "react-dropzone";
 import { VotingContext } from "../context/Voter";
 import Style from "../styles/Cand.module.css";
 import Image from "next/image";
+import Loder from "../components/Loder/Loder"
 import images from "../assets";
 import Button from "../components/Button/Button";
 import { ethers } from "ethers";
@@ -10,6 +11,7 @@ import Input from "../components/Input/Input";
 
 const RegisterCandidate = () => {
   const [fileUrl, setFileUrl] = useState(null);
+  const [loading,setLoading]=useState(false)
   const [formInput, setFormInput] = useState({
     address:"",
     name: "",
@@ -65,6 +67,8 @@ console.log("Dwsqd",pushCandedate);
 
   return (
     <div className={Style.createVoter}>
+            {loading && <Loder />}
+
     {/* Candidate Information Section */}
     <div>
       {fileUrl ? (

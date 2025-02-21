@@ -5,19 +5,19 @@
 :root {
     --icons-color: #c5c7ce; /* Light grey for icons, subtle but clear */
     --icon-color: #b3b6bf;  /* A slightly darker shade for contrast */
-
+    
     --icons-light-color: #d6d8de; /* Light grey for icon backgrounds */
     --icons-bg-color: #f4f6f8;    /* Very soft, neutral background color */
     --shadow-dark-color: #9aa0ad; /* Slightly darker shade for soft shadows */
     --main-bg-color: #00337f;     /* Light neutral background for main UI */
     --box-shadow: 0.2rem 0.2rem 1rem 0.1rem rgba(0, 0, 0, 0.1); /* Soft shadow */
     --box-shadow-2: 0rem 0rem 0.5rem var(--shadow-dark-color), -0.3rem -0.3rem -0.3rem rgba(0, 0, 0, 0.1);
-
+    
     --primary-color: #128277; /* Elegant teal for primary buttons and actions */
     --secondary-color: #ff665a; /* Soft coral for secondary actions, warmer accent */
     --hover-color: #0f6b61; /* Deeper teal for hover interactions */
     --hover-text-color: #ffffff; /* White text for better contrast on hover */
-
+    
     --text-color: #333333; /* Dark grey for readability */
     --secondary-text-color: #777777; /* Softer grey for secondary text */
     --light-text-color: #f4f4f4; /* Lighter text color for certain areas */
@@ -25,156 +25,162 @@
     --transition: 0.3s ease-in-out; /* Smooth transitions for interactions */
 }
 
+/* --- Updated NFT-Inspired Theme Classes --- */
+
+/* Dark Mode Theme */
 .dark-mode {
-    --icons-color: #FF6347;
-    --icon-color: #ffffff;
-    --icons-light-color: #FF634780;
-    --icons-bg-color: #2C2C2C;
-    --shadow-dark-color: #1A1A1A;
-    --main-bg-color: #1F1F1F;
-    --box-shadow: .2rem .2rem 1rem .1rem #00000090;
-    --box-shadow-2: 0rem 0rem 0rem var(--shadow-dark-color), -.3rem -.3rem -.3rem var(--shadow-dark-color);
-    --primary-color: #4A54F1; 
-    --secondary-color: #FF6F61; 
-    --hover-color: #3A3C9F; 
-    --hover-text-color: #FFFFFF;
-    --text-color: #E5E5E5; 
-    --light-text-color: #f9f9f9;
-    --border-radius: 8px;
-    --transition: 0.3s ease-in-out;
-}
-
-.neon-glow {
-    --icons-color: #39FF14;
+    --icons-color: #E91E63;       /* Vibrant pink icons */
     --icon-color: #FFFFFF;
-    --icons-light-color: #39FF1480;
-    --icons-bg-color: #0D0D0D;
-    --shadow-dark-color: #262626;
-    --main-bg-color: #121212;
-    --box-shadow: .2rem .2rem 1rem .1rem #00FFFB90;
-    --box-shadow-2: 0rem 0rem 0rem var(--shadow-dark-color), -.3rem -.3rem -.3rem var(--shadow-dark-color);
-    --primary-color: #FF4F4F; 
-    --secondary-color: #39FF14; 
-    --hover-color: #FF1A1A; 
-    --hover-text-color: #000000;
-    --text-color: #EAEAEA;
-    --light-text-color: #BFBFBF; 
+    --icons-light-color: rgba(233, 30, 99, 0.5);
+    --icons-bg-color: #121212;     /* Near-black background for icons */
+    --shadow-dark-color: #0D0D0D;
+    --main-bg-color: #1A1A1A;       /* Deep dark background */
+    --box-shadow: 0.2rem 0.2rem 1rem 0.1rem rgba(0, 0, 0, 0.5);
+    --box-shadow-2: 0 0 0.5rem var(--shadow-dark-color), -0.3rem -0.3rem -0.3rem var(--shadow-dark-color);
+    --primary-color: #8E24AA;      /* Vibrant purple */
+    --secondary-color: #D81B60;    /* Bold pink */
+    --hover-color: #AD1457;        /* Darker pink for hover */
+    --hover-text-color: #FFFFFF;
+    --text-color: #E0E0E0;
+    --light-text-color: #F5F5F5;
     --border-radius: 8px;
     --transition: 0.3s ease-in-out;
 }
 
-.pastel-palette {
-    --icons-color: #FFA7C4;
-    --icon-color: #4B4B4B;
-    --icons-light-color: #FFA7C480;
-    --icons-bg-color: #F5F5F5;
-    --shadow-dark-color: #DDDDDD;
-    --main-bg-color: #FFFFFF;
-    --box-shadow: .2rem .2rem 1rem .1rem #B3B3B390;
-    --box-shadow-2: 0rem 0rem 0rem var(--shadow-dark-color), -.3rem -.3rem -.3rem var(--shadow-dark-color);
-    --primary-color: #A6DCEF;
-    --secondary-color: #FFA7C4; 
-    --hover-color: #89CFF0; 
-    --hover-text-color: #333333;
-    --text-color: #5A5A5A; 
-    --light-text-color: #737373; 
+/* Neon Glow Theme */
+.neon-glow {
+    --icons-color: #00E5FF;       /* Bright cyan */
+    --icon-color: #FFFFFF;
+    --icons-light-color: rgba(0, 229, 255, 0.5);
+    --icons-bg-color: #000000;     /* Pure black background */
+    --shadow-dark-color: #0D0D0D;
+    --main-bg-color: #000A12;       /* Deep navy */
+    --box-shadow: 0.2rem 0.2rem 1rem 0.1rem rgba(0, 229, 255, 0.7);
+    --box-shadow-2: 0 0 0.5rem var(--shadow-dark-color), -0.3rem -0.3rem -0.3rem var(--shadow-dark-color);
+    --primary-color: #FF007F;       /* Neon pink */
+    --secondary-color: #7C4DFF;     /* Electric purple */
+    --hover-color: #D500F9;         /* Vibrant magenta */
+    --hover-text-color: #000000;
+    --text-color: #F0F0F0;
+    --light-text-color: #C0C0C0;
     --border-radius: 8px;
     --transition: 0.3s ease-in-out;
 }
+
+/* Pastel Palette Theme */
+.pastel-palette {
+    --icons-color: #FF66B2;         /* Vivid pastel pink */
+    --icon-color: #333333;
+    --icons-light-color: rgba(255, 102, 178, 0.5);
+    --icons-bg-color: #FFF0F5;       /* Soft pastel background */
+    --shadow-dark-color: #DDDDDD;
+    --main-bg-color: #FFF5FA;        /* Light pastel tint */
+    --box-shadow: 0.2rem 0.2rem 1rem 0.1rem rgba(255, 102, 178, 0.3);
+    --box-shadow-2: 0 0 0.5rem var(--shadow-dark-color), -0.3rem -0.3rem -0.3rem var(--shadow-dark-color);
+    --primary-color: #66CCFF;         /* Bright pastel blue */
+    --secondary-color: #FF99CC;       /* Warm pastel pink */
+    --hover-color: #FF6699;           /* Vivid pink hover */
+    --hover-text-color: #FFFFFF;
+    --text-color: #333333;
+    --light-text-color: #777777;
+    --border-radius: 8px;
+    --transition: 0.3s ease-in-out;
+}
+
+/* Royal Gold Theme */
 .royal-gold-theme {
-    --primary-color: #FFD700;
-    --secondary-color: #2B2B2B;
-    --icons-color: #B8860B;
+    --primary-color: #FFD700;        /* Classic gold */
+    --secondary-color: #FF8C00;        /* Bright orange accent */
+    --icons-color: #FFC107;          /* Vibrant amber */
     --icons-bg-color: #1C1C1C;
-    --hover-color: #FFEC8B;
+    --hover-color: #FFB300;          /* Lighter golden hue on hover */
     --text-color: #FFFFFF;
-    --main-bg-color: #1C1C1C;
-    --light-text-color: #DCDCDC;
-    --shadow-dark-color: #444444;
+    --main-bg-color: #2C2C2C;         /* Dark contrast background */
+    --light-text-color: #F0E68C;       /* Warm light tone */
+    --shadow-dark-color: #555555;
 }
 
 /* Midnight Blue Theme */
 .midnight-blue-theme {
-    --primary-color: #191970;
-    --secondary-color: #1E90FF;
-    --icons-color: #4682B4;
-    --icons-bg-color: #121212;
-    --hover-color: #1C86EE;
-    --text-color: #F8F8FF;
-    --main-bg-color: #0B0B45;
-    --light-text-color: #B0C4DE;
-    --shadow-dark-color: #2E4A7E;
+    --primary-color: #0D47A1;        /* Deep, vibrant blue */
+    --secondary-color: #2979FF;      /* Bright electric blue */
+    --icons-color: #82B1FF;          /* Light blue accents */
+    --icons-bg-color: #0A0A2A;         /* Dark navy backdrop */
+    --hover-color: #448AFF;          /* Brighter blue on hover */
+    --text-color: #E1F5FE;           /* Soft, light blue text */
+    --main-bg-color: #001F3F;         /* Rich midnight blue background */
+    --light-text-color: #B3E5FC;      /* Pale blue for subtle text */
+    --shadow-dark-color: #0B3D91;
 }
 
 /* Emerald Green Theme */
 .emerald-green-theme {
-    --primary-color: #50C878;
-    --secondary-color: #2F4F4F;
-    --icons-color: #008B8B;
+    --primary-color: #00E676;        /* Neon green */
+    --secondary-color: #1B5E20;        /* Deep forest green */
+    --icons-color: #00C853;           /* Vibrant emerald */
     --icons-bg-color: #0D0D0D;
-    --hover-color: #66CDAA;
-    --text-color: #E0FFFF;
-    --main-bg-color: #013220;
-    --light-text-color: #A9A9A9;
-    --shadow-dark-color: #006400;
+    --hover-color: #69F0AE;           /* Light, fresh green hover */
+    --text-color: #E8F5E9;            /* Off-white with a green tint */
+    --main-bg-color: #004D40;          /* Dark teal background */
+    --light-text-color: #A5D6A7;       /* Soft, pastel green */
+    --shadow-dark-color: #1B5E20;
 }
 
 /* Crimson Velvet Theme */
 .crimson-velvet-theme {
-    --primary-color: #DC143C;
-    --secondary-color: #8B0000;
-    --icons-color: #B22222;
+    --primary-color: #FF1744;        /* Vivid crimson */
+    --secondary-color: #D50000;        /* Bold, deep red */
+    --icons-color: #F44336;           /* Bright red accents */
     --icons-bg-color: #1C1C1C;
-    --hover-color: #FF6347;
+    --hover-color: #FF5252;           /* Lighter red on hover */
     --text-color: #FFFFFF;
-    --main-bg-color: #2B0000;
-    --light-text-color: #FA8072;
-    --shadow-dark-color: #4B0000;
+    --main-bg-color: #8E0000;          /* Rich, deep red background */
+    --light-text-color: #FF8A80;       /* Soft, warm red tint */
+    --shadow-dark-color: #B71C1C;
 }
 
 /* Silver & Sapphire Theme */
 .silver-sapphire-theme {
-    --primary-color: #C0C0C0;
-    --secondary-color: #0F52BA;
-    --icons-color: #4682B4;
-    --icons-bg-color: #2F4F4F;
-    --hover-color: #5F9EA0;
-    --text-color: #F5F5F5;
-    --main-bg-color: #0A0A0A;
-    --light-text-color: #A9A9A9;
-    --shadow-dark-color: #696969;
+    --primary-color: #B0BEC5;         /* Cool silver tone */
+    --secondary-color: #1E88E5;       /* Vibrant sapphire blue */
+    --icons-color: #82B1FF;           /* Bright blue accents */
+    --icons-bg-color: #263238;         /* Deep slate background */
+    --hover-color: #64B5F6;           /* Lighter sapphire for hover */
+    --text-color: #ECEFF1;            /* Almost white text */
+    --main-bg-color: #212121;          /* Dark, modern backdrop */
+    --light-text-color: #CFD8DC;       /* Soft silver highlight */
+    --shadow-dark-color: #37474F;
 }
 
 /* Obsidian & Amber Theme */
 .obsidian-amber-theme {
-    --primary-color: #FFBF00;
-    --secondary-color: #1C1C1C;
-    --icons-color: #FFA500;
-    --icons-bg-color: #0B0B0B;
-    --hover-color: #FFD700;
-    --text-color: #E5E5E5;
-    --main-bg-color: #2F2F2F;
-    --light-text-color: #CD853F;
-    --shadow-dark-color: #8B4513;
+    --primary-color: #FFC107;         /* Bright amber */
+    --secondary-color: #BF360C;        /* Deep, rich orange-red */
+    --icons-color: #FF9800;           /* Vibrant orange */
+    --icons-bg-color: #121212;
+    --hover-color: #FFB300;           /* Lighter amber on hover */
+    --text-color: #F5F5F5;
+    --main-bg-color: #424242;         /* Modern dark grey */
+    --light-text-color: #FFCC80;       /* Soft amber glow */
+    --shadow-dark-color: #6D4C41;
 }
 
 /* Platinum & Ruby Theme */
 .platinum-ruby-theme {
-    --primary-color: #E5E4E2;
-    --secondary-color: #8B0000;
-    --icons-color: #B22222;
-    --icons-bg-color: #1C1C1C;
-    --hover-color: #FF4500;
+    --primary-color: #ECEFF1;         /* Light platinum tone */
+    --secondary-color: #C62828;        /* Deep ruby red */
+    --icons-color: #D32F2F;           /* Bold, vibrant red */
+    --icons-bg-color: #212121;
+    --hover-color: #FF5252;           /* Bright red for hover effects */
     --text-color: #FFFFFF;
-    --main-bg-color: #141414;
-    --light-text-color: #FF7F50;
-    --shadow-dark-color: #4F4F4F;
+    --main-bg-color: #263238;         /* Dark slate backdrop */
+    --light-text-color: #FF8A65;       /* Warm, soft accent */
+    --shadow-dark-color: #424242;
 }
 
+/* --- The rest of your CSS remains unchanged --- */
 
-
-
-.Form_box_input_userName{
+.Form_box_input_userName {
     padding: 1rem 1rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--icons-color);
@@ -182,6 +188,7 @@
     background-color: #FFFFFF;
     color: #f20000;
 }
+
 /* Global styles */
 body {
     background-color: var(--main-bg-color);
@@ -214,25 +221,29 @@ body {
 .shadow2 {
     box-shadow: 0rem 0rem 0rem var(--shadow-dark-color), -3rem -3rem 1rem var(--shadow-dark-color);
 }
-*{
+
+* {
     box-sizing: border-box;
     -webkit-tap-highlight-color: none;
 }
-::selection{
-    color:var(    --shadow-dark-color );
-    background:var(--icons-color);
 
+::selection {
+    color: var(--shadow-dark-color);
+    background: var(--icons-color);
 }
-::-webkit-scrollbar{
+
+::-webkit-scrollbar {
     width: 1rem;
     border: 1px solid var(--main-bg-color);
 }
-::-webkit-scrollbar-track{
+
+::-webkit-scrollbar-track {
     border-radius: 0;
-    background-color:var(--main-bg-color);
+    background-color: var(--main-bg-color);
 }
-::-webkit-scrollbar-thumb{
+
+::-webkit-scrollbar-thumb {
     border-radius: 2rem;
     background: var(--icons-color);
-    width: .5rem;
+    width: 0.5rem;
 }
