@@ -197,7 +197,7 @@ body {
     color: var(--icons-color);
     margin: 2rem;
     background-image: linear-gradient(to right top, #070036, #4f015b, #022d83, #022aac, #004fd7);
-    height: 250vh;
+    height: 200vh;
     width: 100vw;
     overflow-x: hidden;
 }
